@@ -1,6 +1,8 @@
 import { createGlobalStyle } from "styled-components";
 import { GoogleOAuthProvider } from "@react-oauth/google";
-import { Home } from "./Home";
+import { Home } from "./screens/home/Home";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Wrapper } from "./components/Wrapper";
 
 //TSX (XML + TS) -> função que retorna tags HTML.
 //uma função pode ser declarada das seguintes maneiras:
@@ -12,12 +14,17 @@ function App() {
   return (
     //fragment permite agrupar uma lista de filhos (pode existir Home 1, Home 2, Home)
     //sem adicionar nós extras ao DOM. Ele não vai criar tags HTML no DOM.
-    <>
+    <BrowserRouter>
       <GlobalStyle />
       <GoogleOAuthProvider clientId="510743553999-5nn9ftp5grm951do3k0lftuk2rsph7bf.apps.googleusercontent.com">
-        <Home />
+        {/* não precisamos mais */}
+        {/* <Home />  */}
+        <Routes>
+          <Route path="/" element={<Home />}></Route>
+          <Route path="/arena" element={<Wrapper />}></Route>
+        </Routes>
       </GoogleOAuthProvider>
-    </>
+    </BrowserRouter>
   );
 }
 
