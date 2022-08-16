@@ -1,4 +1,5 @@
 import { createGlobalStyle } from "styled-components";
+import { GoogleOAuthProvider } from "@react-oauth/google";
 import { Home } from "./Home";
 
 //TSX (XML + TS) -> função que retorna tags HTML.
@@ -12,7 +13,10 @@ function App() {
     //fragment permite agrupar uma lista de filhos (pode existir Home 1, Home 2, Home)
     //sem adicionar nós extras ao DOM. Ele não vai criar tags HTML no DOM.
     <>
-      <Home />
+      <GlobalStyle />
+      <GoogleOAuthProvider clientId="510743553999-5nn9ftp5grm951do3k0lftuk2rsph7bf.apps.googleusercontent.com">
+        <Home />
+      </GoogleOAuthProvider>
     </>
   );
 }
