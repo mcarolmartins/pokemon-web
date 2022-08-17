@@ -3,6 +3,8 @@ import { GoogleOAuthProvider } from "@react-oauth/google";
 import { Home } from "./screens/home/Home";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Wrapper } from "./components/Wrapper";
+import { Arena } from "./screens/Arena/arena";
+import { Ranking } from "./screens/ranking/ranking";
 
 //TSX (XML + TS) -> função que retorna tags HTML.
 //uma função pode ser declarada das seguintes maneiras:
@@ -21,7 +23,8 @@ function App() {
         {/* <Home />  */}
         <Routes>
           <Route path="/" element={<Home />}></Route>
-          <Route path="/arena" element={<Wrapper />}></Route>
+          <Route path="/arena" element={<Arena></Arena>}></Route>
+          <Route path="/ranking" element={<Ranking></Ranking>}></Route>
         </Routes>
       </GoogleOAuthProvider>
     </BrowserRouter>
