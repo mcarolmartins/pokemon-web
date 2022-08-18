@@ -95,6 +95,8 @@ const Button = styled.button<{ primary: boolean }>`
   font-weight: 500;
   border: 1px solid transparent;
 
+  /* TODO: FAZER HOVER */
+
   ${({ primary }) => primary && StyleButtonPrimary}
 `;
 

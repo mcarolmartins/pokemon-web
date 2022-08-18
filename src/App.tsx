@@ -3,10 +3,10 @@ import { GoogleOAuthProvider } from "@react-oauth/google";
 import { Home } from "./screens/home/Home";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Wrapper } from "./components/Wrapper";
-import { Arena } from "./screens/Arena/arena";
+import { Arena } from "./screens/Arena/Arena";
 import { Ranking } from "./screens/ranking/ranking";
 
-//TSX (XML + TS) -> função que retorna tags HTML.
+//TSX (XML + TS) -> função que retorna tags HTML.z
 //uma função pode ser declarada das seguintes maneiras:
 //function soma(a, b) { return a + b }
 //const sum = (a, b) => a + b;
@@ -23,8 +23,8 @@ function App() {
         {/* <Home />  */}
         <Routes>
           <Route path="/" element={<Home />}></Route>
-          <Route path="/arena" element={<Arena></Arena>}></Route>
-          <Route path="/ranking" element={<Ranking></Ranking>}></Route>
+          <Route path="/arena" element={<Arena />}></Route>
+          <Route path="/ranking" element={<Ranking />}></Route>
         </Routes>
       </GoogleOAuthProvider>
     </BrowserRouter>
