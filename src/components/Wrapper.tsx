@@ -95,7 +95,13 @@ const Button = styled.button<{ primary: boolean }>`
   font-weight: 500;
   border: 1px solid transparent;
 
-  /* TODO: FAZER HOVER */
+  :last-child {
+    margin-left: 1rem;
+  }
+
+  :hover {
+    border: 1px solid #1b2d42;
+  }
 
   ${({ primary }) => primary && StyleButtonPrimary}
 `;

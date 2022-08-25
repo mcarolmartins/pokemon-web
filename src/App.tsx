@@ -19,12 +19,10 @@ function App() {
     <BrowserRouter>
       <GlobalStyle />
       <GoogleOAuthProvider clientId="510743553999-5nn9ftp5grm951do3k0lftuk2rsph7bf.apps.googleusercontent.com">
-        {/* não precisamos mais */}
-        {/* <Home />  */}
         <Routes>
-          <Route path="/" element={<Home />}></Route>
-          <Route path="/arena" element={<Arena />}></Route>
-          <Route path="/ranking" element={<Ranking />}></Route>
+          <Route path="/" element={<Home />} />
+          <Route path="/arena" element={<Arena />} />
+          <Route path="/ranking" element={<Ranking />} />
         </Routes>
       </GoogleOAuthProvider>
     </BrowserRouter>

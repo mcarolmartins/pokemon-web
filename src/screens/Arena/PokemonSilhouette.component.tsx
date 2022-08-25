@@ -1,6 +1,5 @@
 import styled, { css, keyframes } from "styled-components";
 import { ReactComponent as GameName } from "../../assets/icons/gameName.svg";
-import Bulbasaur from "../../assets/icons/bulbasaur.svg";
 import api from "../../services/api";
 import { ChangeEvent, useEffect, useState } from "react";
 
@@ -15,14 +14,19 @@ const PokemonSilhouette = ({
 }: {
   updatePokemonList: (newPokemonList: string) => void;
 }) => {
-  //TODO: pegar os pokemons da api
   const [pokemon, setPokemon] = useState<PokemonProps>();
   const [isVisible, setIsVisible] = useState<boolean>(false);
   // console.log("pokemonState: ", pokemon);
 
+  // função que atualiza o estado do pokemon atual
   const updatePokemon = (newPokemon: PokemonProps) => {
     setPokemon(newPokemon);
   };
+
+  // Função para pegar os pokemons da api
+  // pega um pokemon por fez,
+  // os dados que queremos são: name, image e cry (audio), por isso desestruturamos de data
+  // tbm precisamos chamar a funçao que atualiza o pokemon atual
   const getPokemon = async () => {
     const { data: PokemonData } = await api.get("/pokemon");
     const newPokemon = {
@@ -34,20 +38,26 @@ const PokemonSilhouette = ({
     updatePokemon(newPokemon);
     setIsVisible(false);
   };
-  //TODO: chamar o primeiro pokemon
+  // useEffect: quando acontece o primeiro render da pagina (primeiro carregamento):
+  // - chamar a função getPokemon
   useEffect(() => {
     getPokemon();
   }, []);
 
-  //TODO: fazer funcao que verifica se o valor do input é igual ao valor do pokemon,
+  // funcao InputVerify que é responsavel por:
+  // - verificar se o valor do input é igual ao nome do pokemon,
+  // - sendo igual, reseta o valor do input
+  // - sendo igual, atualizar nossa lista de pokemons salvos
+  // - sendo igual, atualiza o estado de isVisible para controlar a animação
+  // - sendo igual, chama novamente a função de getPokemon com atraso de 300ms
   const InputVerify = (event: ChangeEvent<HTMLInputElement>) => {
-    // verificar se o event.target.value
+    // event.target.value é o valor digitado no input
     if (event.target.value === pokemon?.name) {
       console.log("acertou");
-      setIsVisible(true);
-      updatePokemonList(pokemon.image);
-      //TODO: atualizar score e lista de acertos
       event.target.value = "";
+      updatePokemonList(pokemon.image);
+      setIsVisible(true);
+
       setTimeout(() => {
         getPokemon();
       }, 300);

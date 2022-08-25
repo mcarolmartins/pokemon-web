@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { Wrapper } from "../../components/Wrapper";
 import { OrderBy } from "./OrderBy";
@@ -13,7 +15,4 @@ export const Ranking = () => {
     </Wrapper>
   );
 };
-const ContentWrapper = styled.div`
-  display: grid;
-  grid-auto-flow: row;
-`;
+const ContentWrapper = styled.div``;

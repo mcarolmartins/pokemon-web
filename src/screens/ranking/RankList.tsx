@@ -11,71 +11,45 @@ type User = {
 };
 
 export const RankingList = () => {
-  //TODO: pegar o ranking do da api e rodar sempre ao att a pagina (primeriro render)
+  // nesta caso o ranking é um lista e inicializamos com array vazio,
+  // sempre vai ser atualizado com uma nova lista, então não precisamos da referencia do valor antigo
+  const [ranking, setRanking] = useState<Array<User>>([]);
+
+  // função para pegar os dados de ranking da api
+  // pega os dados (data)  e salva no estqado
+  const getRanking = async () => {
+    const { data } = await api.get("/ranking");
+    setRanking(data);
+  };
+
+  // useEffect que sera chamando no primeiro render,
+  // chamara a função de getRanking
+  useEffect(() => {
+    getRanking();
+  }, []);
 
   return (
     <Wrapper>
       <ul>
-        <CardList>
-          <Position>1</Position>
-          <Profile>
-            <img
-              src="https://lh3.googleusercontent.com/a-/AFdZucpuyV6gqeDohzCfXIDFjPdiC__ebEWaxjFU4Zm0Eg=s96-c"
-              referrerPolicy="no-referrer"
-            />
-            Gabrielly
-          </Profile>
-          <Points>
-            <Pokebola />
-            pontos:
-            <Score>{111}</Score>
-          </Points>
-        </CardList>
-        <CardList>
-          <Position>2</Position>
-          <Profile>
-            <img
-              src="https://lh3.googleusercontent.com/a-/AFdZucpuyV6gqeDohzCfXIDFjPdiC__ebEWaxjFU4Zm0Eg=s96-c"
-              referrerPolicy="no-referrer"
-            />
-            Gabrielly
-          </Profile>
-          <Points>
-            <Pokebola />
-            pontos:
-            <Score>{111}</Score>
-          </Points>
-        </CardList>
-        <CardList>
-          <Position>3</Position>
-          <Profile>
-            <img
-              src="https://lh3.googleusercontent.com/a-/AFdZucpuyV6gqeDohzCfXIDFjPdiC__ebEWaxjFU4Zm0Eg=s96-c"
-              referrerPolicy="no-referrer"
-            />
-            Gabrielly
-          </Profile>
-          <Points>
-            <Pokebola />
-            pontos:
-            <Score>{111}</Score>
-          </Points>
-        </CardList>
-        <CardList>
-          <Position>4</Position>
-          <Profile>
-            <img
-              src="https://lh3.googleusercontent.com/a-/AFdZucpuyV6gqeDohzCfXIDFjPdiC__ebEWaxjFU4Zm0Eg=s96-c"
-              referrerPolicy="no-referrer"
-            />
-            Gabrielly
-          </Profile>
-          <Points>
-            <Pokebola />
-            pontos:
-            <Score>{111}</Score>
-          </Points>
-        </CardList>
+        {/* percorre a lista de ranking utilizando o .map */}
+        {ranking.map((usuario, i) => (
+          <CardList key={usuario.name}>
+            {/*  para cada elemento da posiçao a posiçao */}
+            {/* nesse caso i+1 porque as posições começam com 0 */}
+            <Position>{i + 1}</Position>
+            {/* para cada elemento da posiçao mostra a imagem e nome */}
+            <Profile>
+              <img src={usuario?.image} referrerPolicy="no-referrer" />
+              {usuario.name}
+            </Profile>
+            {/* para cada elemento da posiçao mostra o score*/}
+            <Points>
+              <Pokebola />
+              pontos:
+              <Score>{usuario?.score}</Score>
+            </Points>
+          </CardList>
+        ))}
       </ul>
     </Wrapper>
   );
@@ -134,11 +108,10 @@ const Profile = styled.div`
 const Points = styled.div`
   display: flex;
   align-items: center;
-  width: auto;
-  column-gap: 1rem;
-  box-sizing: border-box;
   color: #1b2d42;
-  margin: 1rem;
+  > svg {
+    margin-right: 0.5rem;
+  }
 `;
 
 const Score = styled.strong`
@@ -148,4 +121,5 @@ const Score = styled.strong`
   color: #1b2d42;
   font-size: 18px;
   min-width: 40px;
+  margin-right: 0.5rem;
 `;
