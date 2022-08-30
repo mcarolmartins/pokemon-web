@@ -3,7 +3,7 @@ import { GoogleOAuthProvider } from "@react-oauth/google";
 import { Home } from "./screens/home/Home";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Wrapper } from "./components/Wrapper";
-import { Arena } from "./screens/Arena/Arena";
+import { Arena } from "./screens/Arena/arena";
 import { Ranking } from "./screens/ranking/ranking";
 
 //TSX (XML + TS) -> função que retorna tags HTML.z
